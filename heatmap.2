@@ -48,77 +48,43 @@ scale  指示是否在行或列的方向上进行缩放，默认为无
 na.rm 逻辑指示是否删除NA值
 revC 逻辑指示是否列的顺序被颠倒
 add.expr 绘图后添加表达式
-breaks
-(optional) Either a numeric vector indicating the splitting points for binning x into colors, or a integer number of break points to be used, in which case the break points will be spaced equally between min(x) and max(x).
-symbreaks
-Boolean indicating whether breaks should be made symmetric about 0. Defaults to TRUE if the data includes negative values, and to FALSE otherwise.
-col
-colors used for the image. Defaults to heat colors (heat.colors).
-colsep, rowsep, sepcolor
-(optional) vector of integers indicating which columns or rows should be separated from the preceding columns or rows by a narrow space of color sepcolor.
-sepwidth
-(optional) Vector of length 2 giving the width (colsep) or height (rowsep) the separator box drawn by colsep and rowsep as a function of the width (colsep) or height (rowsep) of a cell. Defaults to c(0.05, 0.05)
-cellnote
-(optional) matrix of character strings which will be placed within each color cell, e.g. p-value symbols.
-notecex
-(optional) numeric scaling factor for cellnote items.
-notecol
+breaks 断点在min(x)和max(x)之间等差分布
+symbreaks 布尔判断对称断点是否为0.如有负值则为真。否则为假。
+col 设置图像颜色
+colsep, rowsep, sepcolor 可选参数。将某行某列与其他隔开
+sepwidth 两个向量确定单元格的长和宽 默认 c(0.05, 0.05)
+cellnote 放置在单元格内的字符串，例如P值
+notecex 字符大小
+notecol 字符颜色
 (optional) character string specifying the color for cellnote text. Defaults to "cyan".
-na.color
-Color to use for missing value (NA). Defaults to the plot background color.
-trace
-character string indicating whether a solid "trace" line should be drawn across 'row's or down 'column's, 'both' or 'none'. The distance of the line from the center of each color-cell is proportional to the size of the measurement. Defaults to 'column'.
-tracecol
+na.color NA值的颜色
+trace  行列间是否有分隔线
+tracecol  分割线的颜色，默认为 蓝绿色 cyan
 character string giving the color for "trace" line. Defaults to "cyan".
-hline, vline, linecol
-Vector of values within cells where a horizontal or vertical dotted line should be drawn. The color of the line is controlled by linecol. Horizontal lines are only plotted if trace is 'row' or 'both'. Vertical lines are only drawn if trace 'column' or 'both'. hline and vline default to the median of the breaks, linecol defaults to the value of tracecol.
-margins
-numeric vector of length 2 containing the margins (see par(mar= *)) for column and row names, respectively.
-ColSideColors
-(optional) character vector of length ncol(x) containing the color names for a horizontal side bar that may be used to annotate the columns of x.
-RowSideColors
-(optional) character vector of length nrow(x) containing the color names for a vertical side bar that may be used to annotate the rows of x.
-cexRow, cexCol
-positive numbers, used as cex.axis in for the row or column axis labeling. The defaults currently only use number of rows or columns, respectively.
-labRow, labCol
-character vectors with row and column labels to use; these default to rownames(x) or colnames(x), respectively.
-srtRow, srtCol
-angle of row/column labels, in degrees from horizontal
-adjRow, adjCol
-2-element vector giving the (left-right, top-bottom) justification of row/column labels (relative to the text orientation).
-offsetRow, offsetCol
-Number of character-width spaces to place between row/column labels and the edge of the plotting region.
-colRow, colCol
-color of row/column labels, either a scalar to set the color of all labels the same, or a vector providing the colors of each label item
-key
-logical indicating whether a color-key should be shown.
-keysize
-numeric value indicating the size of the key
-density.info
-character string indicating whether to superimpose a 'histogram', a 'density' plot, or no plot ('none') on the color-key.
-denscol
-character string giving the color for the density display specified by density.info, defaults to the same value as tracecol.
-symkey
-Boolean indicating whether the color key should be made symmetric about 0. Defaults to TRUE if the data includes negative values, and to FALSE otherwise.
-densadj
-Numeric scaling value for tuning the kernel width when a density plot is drawn on the color key. (See the adjust parameter for the density function for details.) Defaults to 0.25.
-key.title
-main title of the color key. If set to NA no title will be plotted.
-key.xlab
-x axis label of the color key. If set to NA no label will be plotted.
+hline, vline, linecol 是否在单元格间绘制点线
+margins 行，列名的边距
+ColSideColors 列名的颜色
+RowSideColors 行名的颜色
+cexRow, cexCol 行列标签的字符大小
+labRow, labCol 行列标签，默认为矩阵行列名
+srtRow, srtCol 行列标签的角度
+adjRow, adjCol 行列标签的调整 左右，上下
+offsetRow, offsetCol 行列标签边缘
+colRow, colCol 行列标签的颜色
+key 判断是否显示colorkey
+keysize 大小
+density.info 是否叠加柱状图，密度图在color key上
+denscol 密度信息的颜色
+symkey 布尔判断color key是否以0对称 如包含负值则默认为True 
+densadj 调节密度值，默认为0.25
+key.title 标题
+key.xlab 标签
 key.ylab
-y axis label of the color key. If set to NA no label will be plotted.
-key.xtickfun
-function computing tick location and labels for the xaxis of the color key. Returns a named list containing parameters that can be passed to axis. See examples.
+key.xtickfun 计算位置
 key.ytickfun
-function computing tick location and labels for the y axis of the color key. Returns a named list containing parameters that can be passed to axis. See examples.
-key.par
-graphical parameters for the color key. Named list that can be passed to par.
-main, xlab, ylab
-main, x- and y-axis titles; defaults to none.
-lmat, lhei, lwid
-visual layout: position matrix, column height, column width. See below for details
-extrafun
-A function to be called after all other work. See examples.
-...
-additional arguments passed on to image
+key.par 参数
+main, xlab, ylab 坐标轴名称 默认无
+lmat, lhei, lwid 位置，列高，列宽
+extrafun 其他函数
+
+
