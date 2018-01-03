@@ -96,7 +96,7 @@ Examples
  ##
  ## demonstrate the effect of row and column dendrogram options
  ##
- heatmap.2(x)                    ## default - dendrogram plotted and reordering done.
+ heatmap.2(x)                    ## default - dendrogram plotted and reordering done. 默认一步绘图。
  heatmap.2(x, dendrogram="none") ##  no dendrogram plotted, but reordering done.
  heatmap.2(x, dendrogram="row")  ## row dendrogram plotted and row reordering done.
  heatmap.2(x, dendrogram="col")  ## col dendrogram plotted and col reordering done.
@@ -108,9 +108,9 @@ Examples
  heatmap.2(x, Colv=FALSE, dendrogram="both") ## generates a warning!
 
  ## Reorder dendrogram by branch means rather than sums
- heatmap.2(x, reorderfun=function(d, w) reorder(d, w, agglo.FUN = mean) )
+ heatmap.2(x, reorderfun=function(d, w) reorder(d, w, agglo.FUN = mean) ) 这个比较好，按行或列的平均值聚类
 
- ## plot a sub-cluster using the same color coding as for the full heatmap
+ ## plot a sub-cluster using the same color coding as for the full heatmap  取数据的一部分进行绘制，用于多数据时的放大显示
  full <- heatmap.2(x)
  heatmap.2(x, Colv=full$colDendrogram[[2]], breaks=full$breaks)  # column subset
  heatmap.2(x, Rowv=full$rowDendrogram[[1]], breaks=full$breaks)  # row subset
@@ -120,8 +120,8 @@ Examples
  ## Show effect of row and column label rotation
  heatmap.2(x, srtCol=NULL)
  heatmap.2(x, srtCol=0,   adjCol = c(0.5,1) )
- heatmap.2(x, srtCol=45,  adjCol = c(1,1)   )
- heatmap.2(x, srtCol=135, adjCol = c(1,0)   )
+ heatmap.2(x, srtCol=45,  adjCol = c(1,1)   )   列标签倾斜45度，及其坐标
+ heatmap.2(x, srtCol=135, adjCol = c(1,0)   )  
  heatmap.2(x, srtCol=180, adjCol = c(0.5,0) )
  heatmap.2(x, srtCol=225, adjCol = c(0,0)   ) ## not very useful
  heatmap.2(x, srtCol=270, adjCol = c(0,0.5) )
@@ -129,18 +129,18 @@ Examples
  heatmap.2(x, srtCol=360, adjCol = c(0.5,1) )
 
  heatmap.2(x, srtRow=45, adjRow=c(0, 1) )
- heatmap.2(x, srtRow=45, adjRow=c(0, 1), srtCol=45, adjCol=c(1,1) )
+ heatmap.2(x, srtRow=45, adjRow=c(0, 1), srtCol=45, adjCol=c(1,1) ) 
  heatmap.2(x, srtRow=45, adjRow=c(0, 1), srtCol=270, adjCol=c(0,0.5) )
 
 
  ## Show effect of offsetRow/offsetCol (only works when srtRow/srtCol is
  ## not also present)
- heatmap.2(x, offsetRow=0, offsetCol=0)
+ heatmap.2(x, offsetRow=0, offsetCol=0)  调整行列标签与坐标轴之间的距离。我一般用这个。
  heatmap.2(x, offsetRow=1, offsetCol=1)
  heatmap.2(x, offsetRow=2, offsetCol=2)
  heatmap.2(x, offsetRow=-1, offsetCol=-1)
 
- heatmap.2(x, srtRow=0, srtCol=90, offsetRow=0, offsetCol=0)
+ heatmap.2(x, srtRow=0, srtCol=90, offsetRow=0, offsetCol=0) 
  heatmap.2(x, srtRow=0, srtCol=90, offsetRow=1, offsetCol=1)
  heatmap.2(x, srtRow=0, srtCol=90, offsetRow=2, offsetCol=2)
  heatmap.2(x, srtRow=0, srtCol=90, offsetRow=-1, offsetCol=-1)
@@ -198,7 +198,7 @@ Examples
  ##
  ## Show effect of z-score scaling within columns, blue-red color scale
  ##
- hv <- heatmap.2(x, col=bluered, scale="column", tracecol="#303030")
+ hv <- heatmap.2(x, col=bluered, scale="column", tracecol="#303030")  带有Z-SCORE的红蓝白配色
 
  ###
  ## Look at the return values
@@ -209,14 +209,14 @@ Examples
  hv$colorTable
 
  ## Extract the range associated with white
- hv$colorTable[hv$colorTable[,"color"]=="#FFFFFF",]
+ hv$colorTable[hv$colorTable[,"color"]=="#FFFFFF",] 提取白色区域的数值？
 
- ## Determine the original data values that map to white
+ ## Determine the original data values that map to white  这个才是提取白色区域的原始数据
  whiteBin <- unlist(hv$colorTable[hv$colorTable[,"color"]=="#FFFFFF",1:2])
  rbind(whiteBin[1] * hv$colSDs + hv$colMeans,
        whiteBin[2] * hv$colSDs + hv$colMeans )
  ##
- ## A more decorative heatmap, with z-score scaling along columns
+ ## A more decorative heatmap, with z-score scaling along columns  给行列加上变色条（按照Z score值）
  ##
  hv <- heatmap.2(x, col=cm.colors(255), scale="column",
 	       RowSideColors=rc, ColSideColors=cc, margin=c(5, 10),
@@ -225,7 +225,7 @@ Examples
          tracecol="green", density="density")
  ## Note that the breakpoints are now symmetric about 0
 
- ## Color the labels to match RowSideColors and ColSideColors
+ ## Color the labels to match RowSideColors and ColSideColors  让标签变色
  hv <- heatmap.2(x, col=cm.colors(255), scale="column",
          RowSideColors=rc, ColSideColors=cc, margin=c(5, 10),
 	       xlab="specification variables", ylab= "Car Models",
@@ -264,7 +264,7 @@ Examples
  hM <- format(round(cU, 2))
  hM
 
- # now with the correlation matrix on the plot itself
+ # now with the correlation matrix on the plot itself 填充数值后的对角矩阵
 
  heatmap.2(cU, Rowv=FALSE, symm=TRUE, col=rev(heat.colors(16)),
              distfun=function(c) as.dist(1 - c), trace="none",
